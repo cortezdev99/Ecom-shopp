@@ -1,0 +1,113 @@
+// Place front and back on top of eachother
+.shop-product {
+  display: grid;
+  grid-template-rows: 1/-1;
+  grid-template-columns: 1/-1;
+
+  & > * {
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+  }
+}
+
+// Card flip
+.shop-product {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+
+  &__front, &__back {
+    backface-visibility: hidden;
+    transition: all .5s ease;
+  }
+
+  &__back {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__front {
+    transform: rotateY(180deg);
+  }
+  &:hover &__back {
+    transform: rotateY(0deg);
+  }
+}
+
+.shop-product__front {
+  height: 314px;
+  width: 240px;
+  background-color: none;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  &__img {
+
+  }
+
+  &__title {
+    color: #333333;
+    font-size: 18px;
+    font-family: 'Titillium Web';
+  }
+}
+
+
+.shop-product__back {
+  height: 314px;
+  width: 240px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+
+  display: grid;
+  grid-template-rows: 15px [title-s] 30px [title-e description-s] 1fr [description-e price-s] 25px [price-e footer-s] 65px [footer-e] 15px;
+  grid-template-columns: 15px [s] 1fr [e] 15px;
+  justify-items: start;
+  row-gap: 7px;
+
+  & > * {
+    grid-column: s/e
+  }
+
+  &__title {
+    color: #00CB79;
+    font-family: 'Encode Sans Condensed Web';
+    font-size: 16px;
+    font-weight: 500;
+    grid-row: title-s/title-e;
+  }
+
+  &__description {
+    font-size: 13px;
+    color: #333333;
+    grid-row: description-s/description-e;
+  }
+
+  &__quantity {
+    grid-row: footer-s/footer-e;
+  }
+
+  &__price {
+    grid-row: price-s/price-e
+  }
+
+  &__add-to-cart {
+    height: 47px;
+    width: 97px;
+    border-radius: 20px;
+    color: white;
+    background-color: #00CB79;
+    font-size: 12px;
+    font-weight: 600;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-row: footer-s/footer-e;
+    justify-self: end;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:active {
+      transform: scaleX(0.97);
+    }
+  }
+}
